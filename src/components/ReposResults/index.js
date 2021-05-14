@@ -1,12 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Card, Image } from 'semantic-ui-react';
 
-const Results = () => (
+import './styles.scss';
+
+const Results = ({ reposResult }) => (
   <div className="searchResults">
-    <ul className="searchResults__list">
-      <li className="searchResults__list__item" />
-    </ul>
+    <Card.Group itemsPerRow={3}>
+      {reposResult.map((repo) => (
+        <Card key={repo.id}>
+          <div className="searchResults__card">
+            <Image src={repo.owner.avatar_url} wrapped ui={false} className="searchResults__card__img" />
+
+            <Card.Content className="searchResults__card__content">
+              <Card.Header>{repo.name}</Card.Header>
+              <Card.Meta>
+                <span className="date">{repo.name}</span>
+              </Card.Meta>
+              <Card.Description>
+                {repo.description}
+              </Card.Description>
+            </Card.Content>
+          </div>
+        </Card>
+      ))};
+    </Card.Group>
   </div>
 );
+
+Results.propTypes = {
+  reposResult: PropTypes.arrayOf(PropTypes.shape({
+    item: PropTypes.string.isRequired,
+  })).isRequired,
+};
 
 export default Results;
