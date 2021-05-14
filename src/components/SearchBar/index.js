@@ -4,7 +4,7 @@ import { Input, Segment } from 'semantic-ui-react';
 
 import './styles.scss';
 
-const Search = ({ onSubmitQuery, onChangeQuery, query }) => (
+const Search = ({ onSubmitQuery, onChangeQuery, query, }) => (
   <form className="searchBar" onSubmit={onSubmitQuery}>
     <Segment padded>
       <Input

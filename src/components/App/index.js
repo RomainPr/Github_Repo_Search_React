@@ -34,13 +34,14 @@ const App = () => {
       .then((response) => {
         setResults(response.data.items);
         setResultsNumber(response.data.total_count);
-        setVisibilityResult(true);
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.log(error);
       })
       .finally(() => {
+        setVisibilityResult(true);
+        setQueryValue('');
       });
   };
 
@@ -58,7 +59,7 @@ const App = () => {
             onChangeQuery={handleChangeQuery}
           />
           <Message resultsNumber={numberOfResults} visible={isVisible} />
-          {queryValue && <Results reposResult={results} />}
+          <Results reposResult={results} />
         </Route>
         <Route exact path="/faq">
           <Questions />
