@@ -7,9 +7,6 @@ import Search from 'src/components/SearchBar';
 import Message from 'src/components/Message';
 import Results from 'src/components/ReposResults';
 
-// == Import data
-import ReposGitDatas from 'src/data/repos';
-
 // == Import
 import githubLogo from 'src/assets/images/logo-github.png';
 import 'semantic-ui-css/semantic.min.css';
@@ -19,6 +16,7 @@ import './styles.scss';
 const App = () => {
   const [results, setResults] = useState([]);
   const [queryValue, setQueryValue] = useState('');
+  const [numberOfResults, setResultsNumber] = useState('0');
 
   const handleChangeQuery = (queryVal) => {
     setQueryValue(queryVal);
@@ -30,16 +28,17 @@ const App = () => {
     axios.get(`https://api.github.com/search/repositories?q=${queryValue}`)
       .then((response) => {
         setResults(response.data.items);
+        setResultsNumber(response.data.total_count);
       })
       .catch((error) => {
-      // .catch - appelé en cas d'erreur serveur (400, 500) ou erreur JS front sur la requete
-      // eslint-disable-next-line no-console
+        // eslint-disable-next-line no-console
         console.log(error);
       })
       .finally(() => {
-
       });
   };
+
+  //const onGoingResults = results.filter((result) => result.total_count).length;
 
   return (
     <div className="app">
@@ -51,7 +50,7 @@ const App = () => {
         onSubmitQuery={handleFormSubmit}
         onChangeQuery={handleChangeQuery}
       />
-      <Message />
+      <Message resultsNumber={numberOfResults} />
       <Results reposResult={results} />
     </div>
   );
