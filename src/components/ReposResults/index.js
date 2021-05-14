@@ -13,17 +13,19 @@ const Results = ({ reposResult }) => (
             <Image src={repo.owner.avatar_url} wrapped ui={false} className="searchResults__card__img" />
 
             <Card.Content className="searchResults__card__content">
-              <Card.Header>{repo.name}</Card.Header>
+              <Card.Header>
+                <h2 className="searchResults__card__content__title">{repo.name}</h2>
+              </Card.Header>
               <Card.Meta>
                 <span className="date">{repo.name}</span>
               </Card.Meta>
               <Card.Description>
-                {repo.description}
+                <p className="searchResults__card__content__text">{repo.description}</p>
               </Card.Description>
             </Card.Content>
           </div>
         </Card>
-      ))};
+      ))}
     </Card.Group>
   </div>
 );

@@ -1,3 +1,5 @@
+@use 'src/styles/vars';
+
 .searchResults {
   &__card {
     &__img img {
@@ -5,6 +7,15 @@
     }
     &__content {
       padding: 1em;
+
+      &__title {
+        font-family: vars.$title-font;
+        font-weight: vars.$title-font-weight;
+      }
     }
   }
+}
+
+.ui.three.cards {
+  margin: 0 auto;
 }

@@ -1,11 +1,15 @@
 // == Import npm
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Switch, Route } from 'react-router-dom';
 
 // == Import Components
 import Search from 'src/components/SearchBar';
 import Message from 'src/components/Message';
 import Results from 'src/components/ReposResults';
+import Error from 'src/components/NotFound';
+import MyMenu from 'src/components/Menu';
+import Questions from 'src/components/FAQ';
 
 // == Import
 import githubLogo from 'src/assets/images/logo-github.png';
@@ -16,7 +20,7 @@ import './styles.scss';
 const App = () => {
   const [results, setResults] = useState([]);
   const [queryValue, setQueryValue] = useState('');
-  const [numberOfResults, setResultsNumber] = useState('0');
+  const [numberOfResults, setResultsNumber] = useState(0);
 
   const handleChangeQuery = (queryVal) => {
     setQueryValue(queryVal);
@@ -38,20 +42,29 @@ const App = () => {
       });
   };
 
-  //const onGoingResults = results.filter((result) => result.total_count).length;
-
   return (
     <div className="app">
       <div className="app__logo">
         <img src={githubLogo} alt="react logo" />
+        <MyMenu />
       </div>
-      <Search
-        query={queryValue}
-        onSubmitQuery={handleFormSubmit}
-        onChangeQuery={handleChangeQuery}
-      />
-      <Message resultsNumber={numberOfResults} />
-      <Results reposResult={results} />
+      <Switch>
+        <Route exact path="/recherche">
+          <Search
+            query={queryValue}
+            onSubmitQuery={handleFormSubmit}
+            onChangeQuery={handleChangeQuery}
+          />
+          <Message resultsNumber={numberOfResults} />
+          <Results reposResult={results} />
+        </Route>
+        <Route exact path="/faq">
+          <Questions />
+        </Route>
+        <Route>
+          <Error />
+        </Route>
+      </Switch>
     </div>
   );
 };
