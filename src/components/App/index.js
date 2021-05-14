@@ -21,6 +21,7 @@ const App = () => {
   const [results, setResults] = useState([]);
   const [queryValue, setQueryValue] = useState('');
   const [numberOfResults, setResultsNumber] = useState(0);
+  const [isVisible, setVisibilityResult] = useState(false);
 
   const handleChangeQuery = (queryVal) => {
     setQueryValue(queryVal);
@@ -33,6 +34,7 @@ const App = () => {
       .then((response) => {
         setResults(response.data.items);
         setResultsNumber(response.data.total_count);
+        setVisibilityResult(true);
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -55,8 +57,8 @@ const App = () => {
             onSubmitQuery={handleFormSubmit}
             onChangeQuery={handleChangeQuery}
           />
-          <Message resultsNumber={numberOfResults} />
-          <Results reposResult={results} />
+          <Message resultsNumber={numberOfResults} visible={isVisible} />
+          {queryValue && <Results reposResult={results} />}
         </Route>
         <Route exact path="/faq">
           <Questions />
