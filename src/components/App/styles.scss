@@ -1,0 +1,19 @@
+@use 'src/styles/vars';
+
+.app {
+  width: 900px;
+  background: vars.$background;
+  font-family: vars.$global-font;
+  font-weight: vars.$global-font-weight;
+  margin: 1em auto;
+  padding: 1em;
+
+  &__logo {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  &__logo img {
+    max-width: 150px;
+  }
+}
