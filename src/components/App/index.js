@@ -46,10 +46,10 @@ const App = () => {
     <div className="app">
       <div className="app__logo">
         <img src={githubLogo} alt="react logo" />
-        <MyMenu />
       </div>
+      <MyMenu />
       <Switch>
-        <Route exact path="/recherche">
+        <Route exact path="/">
           <Search
             query={queryValue}
             onSubmitQuery={handleFormSubmit}

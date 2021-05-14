@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const MyMenu = () => (
 
   <Menu>
-    <NavLink to="/recherche">
+    <NavLink to="/">
       <Menu.Item
         name="Recherche"
       >
