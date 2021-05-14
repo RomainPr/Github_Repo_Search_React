@@ -11,6 +11,7 @@
       &__title {
         font-family: vars.$title-font;
         font-weight: vars.$title-font-weight;
+        font-size: 1.2em,
       }
     }
   }
@@ -18,4 +19,8 @@
 
 .ui.three.cards {
   margin: 0 auto;
+}
+
+.meta {
+  padding-bottom: 0.8em;
 }
