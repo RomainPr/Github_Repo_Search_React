@@ -1,7 +1,5 @@
 # Github API
 
-**Objectif**
-
 Annuaire qui permet de chercher des repos sur github
 
 # Stack 
